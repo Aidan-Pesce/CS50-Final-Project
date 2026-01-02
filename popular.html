@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Most Popular
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="row  d-flex justify-content-center">
+        <h1>Most Popular</h1>
+
+        {% for info in postInfo %}
+
+        <script>
+
+            var disliked = document.getElementById("dislikeButton{{  loop.index  }}")
+
+            function dislike() {
+                //disliked.src = "https://th.bing.com/th/id/R.26b2c9f608ae4979f88897e65a3aeb5d?rik=lqmilepv6HLjsw&riu=http%3a%2f%2fimg2.thejournal.ie%2finline%2f2413139%2foriginal%2f%3fwidth%3d500%26version%3d2413139&ehk=hUhtAUJUBbqDOllXFFfv6nxKpW7c1GcSnDxA5mQB85k%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1";
+                alert("dislike");
+            }
+
+            function like() {
+                alert("like");
+            }
+
+        </script>
+
+        <div class="card" style="width: 60rem;" id="card">
+            <div class="card-body">
+                <p class="right-corner" name="date" id="date{{  loop.index  }}">{{  info.date  }}</p>
+                <a class="nav-link" href="/postPage" name="title{{ loop.index }}">{{  info.title  }}</a>
+                <h6 class="card-subtitle mb-2 text-muted" name="username">{{  info.username  }}</h6>
+                <p class="card-text">{{  info.message  }}</p>
+                <p id="id{{  info.Postid  }}">{{  info.Postid  }}</p>
+
+                <form method="post" action="/popular">
+                    {% set vote = votes %}
+                    {{  vote[loop.index - 1]  }}
+                    <br>
+                    {{  vote[loop.index - 1].post_id  }}
+                    <div class="right-corner">
+                        <p>Likes: {{  info.likes  }}</p>
+                        {% if vote[loop.index - 1].liked == 1 %}
+                        <button id="dislikeButton{{  loop.index  }}" name="dislike{{  loop.index  }}" class="vote-button" value="DISLIKE" onclick="dislike()"><img src="https://cdn.freebiesupply.com/logos/large/2x/fb-like-logo-png-transparent.png" style="transform:rotate(180deg);" alt="dislike" class="vote" name="thumbsDown"></button>
+                        <button id="like{{  loop.index  }}" name="like{{  loop.index  }}" class="vote-button" value="LIKE" onclick="like()"><img src="https://img.favpng.com/10/8/7/like-button-social-media-image-facebook-messenger-png-favpng-YkquKiF4ePG3tMC0eT3hxUfgS.jpg" alt="like" class="vote"></button>
+                        {% elif vote[loop.index - 1].disliked == 1 %}
+                        <button id="dislikeButton{{  loop.index  }}" name="dislike{{  loop.index  }}" class="vote-button" value="DISLIKE" onclick="dislike()"><img src="https://img.favpng.com/10/8/7/like-button-social-media-image-facebook-messenger-png-favpng-YkquKiF4ePG3tMC0eT3hxUfgS.jpg" style="transform:rotate(180deg);" alt="dislike" class="vote" name="thumbsDown"></button>
+                        <button id="like{{  loop.index  }}" name="like{{  loop.index  }}" class="vote-button" value="LIKE" onclick="like()"><img src="https://cdn.freebiesupply.com/logos/large/2x/fb-like-logo-png-transparent.png" alt="like" class="vote"></button>
+
+                        {% else %}
+                            <button id="dislikeButton{{  loop.index  }}" name="dislike{{  loop.index  }}" class="vote-button" value="DISLIKE" onclick="dislike()"><img src="https://cdn.freebiesupply.com/logos/large/2x/fb-like-logo-png-transparent.png" style="transform:rotate(180deg);" alt="dislike" class="vote" name="thumbsDown"></button>
+                            <button id="like{{  loop.index  }}" name="like{{  loop.index  }}" class="vote-button" value="LIKE" onclick="like()"><img src="https://cdn.freebiesupply.com/logos/large/2x/fb-like-logo-png-transparent.png" alt="like" class="vote"></button>
+
+                        {% endif %}
+                    </div>
+                    <div>
+                        <!--Referenced Bootstrap for collapse feature https://getbootstrap.com/docs/4.0/components/collapse/-->
+                        <button class="btn btn-primary all-right" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedComments{{  loop.index  }}" aria-expanded="false" aria-controls="collapsedComments">
+                            Load Comments
+                        </button>
+
+                        <button class="btn btn-primary all-left commentHereButton" id="commentHereButtonID{{  loop.index  }}" name="commentHereButton{{  loop.index  }}" value="COMMENT">
+                            Comment:
+                        </button>
+                            <input type="text" name="commentBox{{  loop.index  }}" id="commentBoxID{{  loop.index  }}" class="form-control commentHere" aria-label="Default" >
+                        <br>
+                    </div>
+                    <div class="left-corner">
+                        </p>
+                            <br>
+                            <div class="collapse" id="collapsedComments{{  loop.index  }}">
+                                {% for comment in comments %}
+                                    {% if comment.post_id == info.Postid %}
+                                        <div class="card card-body">
+                                            {{  comment.message  }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

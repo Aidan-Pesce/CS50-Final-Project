@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Make Post
+{% endblock %}
+
+{% block main %}
+
+    <form action="/newPost" method="post">
+        <h1>New Post</h1>
+        <div class="card">
+            <div class="mb-3">
+                <label for="postTitle">Title:</label>
+                <br>
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="postTitle" name="postTitle" placeholder="Post Title" type="text">
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <br>
+                <textarea class="post-text" rows="5" id="message" name="message" placeholder="Message"></textarea>
+              </div>
+            <button class="btn btn-primary" type="submit">Make Post</button>
+        </div>
+    </form>
+
+
+
+{% endblock %}

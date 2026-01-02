@@ -1,0 +1,118 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+.white {
+    color: #ffffff;
+}
+
+.black {
+    color: #000000;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+}
+
+h2 {
+    color: #dc143c;
+}
+
+/* Sets the background color of buttons to crimson for both when there is no user interaction and when a mouse is hovering over it */
+.btn-primary {
+    background-color: #dc143c;
+}
+
+.btn-primary:focus {
+    background-color: #dc143c;
+}
+
+.btn-primary:hover {
+    background-color: #dc143c;
+}
+
+body {
+    background-color: #BFEFF0;
+}
+
+.vote {
+    height: 30px;
+    width: 30px;
+    border-radius: 20%;
+    background: none;
+}
+
+.vote-button {
+    background: none;
+    border: none;
+    height: 40px;
+    width: 40px;
+}
+
+.comment {
+    border-width: 5px;
+    border-color: #dc143c;
+}
+
+#sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#commentBox {
+    width: 300px;
+    position: absolute;
+    left: 150px;
+}
+
+.right-corner {
+    text-align: right;
+}
+
+.left-corner {
+    text-align: left;
+}
+
+.post-text {
+    width: 600px;
+    height: 80px;
+}
+
+.flipped {
+    transform: scaleX(-1);
+}
+
+#commentButton {
+    position: absolute;
+    right: 150px;
+}
+
+.all-right {
+    position: absolute;
+    right: 10px;
+}
+
+.all-left {
+    position: absolute;
+    left: 10px;
+}
+
+.comment-spacer {
+    line-height: 1.6;
+}
+
+.commentHere {
+    position: absolute;
+    left: 100px;
+    width: 400px;
+}
+
+.commentHereButton {
+    z-index: 8;
+}

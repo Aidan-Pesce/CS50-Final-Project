@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+
+    <form action="/profile" method="post">
+        <h1>Profile</h1>
+        <div class="card">
+            <h2>{{  username  }}'s Profile</h2>
+            <h2 class="black">Posts:</h2>
+            {% for info in postInfo %}
+                <p><a class="nav-link" href="/#card{{  info.Postid  }}">Post #{{  loop.index  }}: {{  info.title  }}</a></p>
+            {% endfor %}
+
+        </div>
+    </form>
+
+
+
+{% endblock %}
